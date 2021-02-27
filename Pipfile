@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 flask = "*"
 gunicorn = "*"
+opencv-python = "*"
+numpy = "*"
 
 [dev-packages]
 

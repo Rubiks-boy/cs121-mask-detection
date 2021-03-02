@@ -3,14 +3,17 @@
 import cv2
 import numpy as np
 import glob
+import os
 
 # F_NAME = "./brothers.jpg"
 # F_NAME = "./IMG_3008.jpeg"
 # F_NAME = "./IMG_2994.JPG"
-F_NAME = "./leaders-2.jpg"
+# F_NAME = "./leaders-2.jpg"
 
-prototxtPath = r"deploy.prototxt"
-weightsPath = r"res10_300x300_ssd_iter_140000.caffemodel"
+cwd = os.getcwd()
+prototxtPath = os.path.join(cwd, "OpenCV Demos", "deploy.prototxt")
+weightsPath = os.path.join(cwd, "OpenCV Demos",
+                           "res10_300x300_ssd_iter_140000.caffemodel")
 faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 
@@ -58,7 +61,9 @@ def full_detect_flow(fname):
 
 if __name__ == "__main__":
     counter = 0
-    for file in glob.glob("./archive/images/*.png"):
+    imgs_path = os.path.join(cwd, "archive", "images", "*.png")
+
+    for file in glob.glob(imgs_path):
         if counter < 20:
             print(file)
             full_detect_flow(file)

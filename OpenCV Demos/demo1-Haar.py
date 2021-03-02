@@ -1,21 +1,24 @@
 import cv2
 import numpy as np
 import glob
+import os
 
-F_NAME = "./brothers.jpg"
+# F_NAME = "./brothers.jpg"
 # F_NAME = "./IMG_3008.jpeg"
 # F_NAME = "./IMG_2994.JPG"
 # F_NAME = "./leaders-2.jpg"
+
+cwd = os.getcwd()
+cascade_xml = os.path.join(cwd, "OpenCV Demos",
+                           "haarcascade_frontalface_default.xml")
 
 
 def read_img_and_detect(fname):
     # read image
     img = cv2.imread(fname)
 
-    bw_threshold = 80
-
     # show image
-    face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+    face_cascade = cv2.CascadeClassifier(cascade_xml)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
     # detect face
@@ -35,7 +38,9 @@ def read_img_and_detect(fname):
 
 if __name__ == "__main__":
     counter = 0
-    for file in glob.glob("./archive/images/*.png"):
+    imgs_path = os.path.join(cwd, "archive", "images", "*.png")
+
+    for file in glob.glob(imgs_path):
         if counter < 20:
             print(file)
             read_img_and_detect(file)

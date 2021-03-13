@@ -1,0 +1,11 @@
+.mask-results {
+    position: relative;
+    max-width: 1000px;
+    /* height: 1000px;
+    width: 1000px; */
+}
+
+.mask-results img {
+    width: 100%;
+    /* height: 100; */
+}

@@ -14,12 +14,16 @@ export default function Upload() {
 
         const data = new FormData();
         data.append('file', e.target.files[0]);
-        axios.post("http://172.26.72.28:5000/test", data, { // receive two parameter endpoint url ,form data 
-            })
+        console.log("attempting");
+        axios.post("http://127.0.0.1:5000/test")
             .then(res => { // then print response status
                 console.log('Uploaded from Axios');
-                console.log(res.statusText)
-      })
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log("rip");
+                console.log(err);
+            });
     }
 
     return (

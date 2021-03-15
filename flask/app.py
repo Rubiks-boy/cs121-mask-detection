@@ -1,15 +1,16 @@
-from flask import Flask, request, send_from_directory
-from flask_cors import cross_origin
+from flask import Flask, request, send_from_directory, Response
+from flask_cors import CORS
 from markupsafe import escape
 from werkzeug.utils import secure_filename
 import os.path
 import json
+
 app = Flask(__name__)
+CORS(app)
 STATIC = 'static'
 UPLOADS = 'uploads'
 
-DEFAULT_RESPONSE = json.loads(
-    """
+DEFAULT_RESPONSE = json.loads("""
     [
     {
         "top": "14",
@@ -33,15 +34,14 @@ DEFAULT_RESPONSE = json.loads(
         "result": 2
     }
     ]
-    """
-)
+    """)
+
 
 @app.route('/')
 def index():
     return send_from_directory(STATIC, 'index.html')
 
 
-@cross_origin('*')
 @app.route('/test', methods=['POST'])
 def upload_text():
     print('Upload detected')
@@ -55,4 +55,4 @@ def upload_text():
     #     upload.save(os.path.join('uploads', filename))
     # return '\n'.join(text_returned)
     # return {'data': DEFAULT_RESPONSE}
-    return 'This works!'
+    return Response("{'a':'b'}", status=200, mimetype='application/json')

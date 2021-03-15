@@ -7,8 +7,12 @@ name = "pypi"
 flask = "*"
 gunicorn = "*"
 flask-cors = "*"
+opencv-python = "*"
+numpy = "*"
 
 [dev-packages]
+pylint = "*"
+yapf = "*"
 
 [requires]
 python_version = "3.8"

@@ -6,11 +6,13 @@ import os.path
 import json
 
 app = Flask(__name__)
+# TODO: we're allowing access from any origin
+# this is like, pretty not so great...
 CORS(app)
 STATIC = 'static'
 UPLOADS = 'uploads'
 
-DEFAULT_RESPONSE = json.loads("""
+DEFAULT_RESPONSE = """
     [
     {
         "top": "14",
@@ -34,7 +36,7 @@ DEFAULT_RESPONSE = json.loads("""
         "result": 2
     }
     ]
-    """)
+    """
 
 
 @app.route('/')
@@ -55,4 +57,4 @@ def upload_text():
     #     upload.save(os.path.join('uploads', filename))
     # return '\n'.join(text_returned)
     # return {'data': DEFAULT_RESPONSE}
-    return Response("{'a':'b'}", status=200, mimetype='application/json')
+    return Response(DEFAULT_RESPONSE, status=200, mimetype='application/json')

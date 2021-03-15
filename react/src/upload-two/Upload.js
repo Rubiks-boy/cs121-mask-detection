@@ -14,7 +14,9 @@ export default function Upload() {
 
         const data = new FormData();
         data.append('file', e.target.files[0]);
-        console.log("attempting");
+
+        // TODO: Fill in this URL automatically with env
+        // vars, based on whether it's dev or prod
         axios.post("http://127.0.0.1:5000/test")
             .then(res => { // then print response status
                 console.log('Uploaded from Axios');

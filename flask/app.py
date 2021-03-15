@@ -1,4 +1,5 @@
 from flask import Flask, request, send_from_directory
+from flask_cors import cross_origin
 from markupsafe import escape
 from werkzeug.utils import secure_filename
 import os.path
@@ -40,14 +41,18 @@ def index():
     return send_from_directory(STATIC, 'index.html')
 
 
+@cross_origin('*')
 @app.route('/test', methods=['POST'])
 def upload_text():
-    print(f'This is our request:\n{request.form}')
-    text_returned = []
-    for key in request.form.keys():
-        text_returned.append(f'{key} -> {request.form[key]}')
-    for x in request.files:
-        upload = request.files[x]
-        filename = secure_filename(upload.filename)
-        upload.save(os.path.join('uploads', filename))
-    return '\n'.join(text_returned)
+    print('Upload detected')
+    # print(f'This is our request:\n{request.form}')
+    # text_returned = []
+    # for key in request.form.keys():
+    #     text_returned.append(f'{key} -> {request.form[key]}')
+    # for x in request.files:
+    #     upload = request.files[x]
+    #     filename = secure_filename(upload.filename)
+    #     upload.save(os.path.join('uploads', filename))
+    # return '\n'.join(text_returned)
+    # return {'data': DEFAULT_RESPONSE}
+    return 'This works!'

@@ -1,3 +1,4 @@
+'''
 from flask import Flask, request, send_from_directory, Response
 from flask_cors import CORS
 from markupsafe import escape
@@ -58,3 +59,4 @@ def upload_text():
     # return '\n'.join(text_returned)
     # return {'data': DEFAULT_RESPONSE}
     return Response(DEFAULT_RESPONSE, status=200, mimetype='application/json')
+'''

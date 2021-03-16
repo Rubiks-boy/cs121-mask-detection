@@ -3,13 +3,14 @@ import axios from 'axios';
 import './Upload.css';
 
 
-export default function Upload() {
+export default function Upload(props) {
 
-    let [file, fileUpload] = useState(null);
+    // let [file, fileUpload] = useState(null);
 
     function handleChange(e) {
         const objURL = URL.createObjectURL(e.target.files[0]);
-        fileUpload(objURL);
+        // fileUpload(objURL);
+        props.updateImage(objURL);
         console.log(objURL);
 
         const data = new FormData();
@@ -21,6 +22,7 @@ export default function Upload() {
             .then(res => { // then print response status
                 console.log('Uploaded from Axios');
                 console.log(res.data);
+                props.updateMasks(res.data);
             })
             .catch(err => {
                 console.log("rip");
@@ -31,7 +33,7 @@ export default function Upload() {
     return (
         <div>
             <input type='file' onChange={handleChange}/>
-            <img src={file}/>
+            {/* <img src={file}/> */}
         </div>
     );
 }

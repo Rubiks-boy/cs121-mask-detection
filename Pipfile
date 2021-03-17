@@ -6,12 +6,14 @@ name = "pypi"
 [packages]
 flask = "*"
 gunicorn = "*"
+flask-cors = "*"
 opencv-python = "*"
 numpy = "*"
 
 [dev-packages]
 pylint = "*"
 yapf = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.8"

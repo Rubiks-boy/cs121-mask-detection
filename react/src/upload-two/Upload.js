@@ -3,6 +3,9 @@ import React from 'react'
 import axios from 'axios'
 import './Upload.css'
 
+// const maskAPI = 'http://localhost:5000/test'
+const maskAPI = 'https://hirsch-cs121-demo.herokuapp.com/test'
+
 export default function Upload(props) {
     // let [file, fileUpload] = useState(null);
 
@@ -18,7 +21,7 @@ export default function Upload(props) {
         // TODO: Fill in this URL automatically with env
         // vars, based on whether it's dev or prod
         axios
-            .post('http://127.0.0.1:5000/test')
+            .post(maskAPI)
             .then((res) => {
                 // then print response status
                 console.log('Uploaded from Axios')

@@ -1,9 +1,11 @@
 from flask import Flask, request, send_from_directory, Response
 from flask_cors import CORS
+
+from datetime import datetime as dt
 # from markupsafe import escape
 # from werkzeug.utils import secure_filename
 # import os.path
-# import json
+import json
 
 app = Flask(__name__)
 # TODO: we're allowing access from any origin
@@ -39,6 +41,20 @@ DEFAULT_RESPONSE = """
     """
 
 
+def cropped_resp(code):
+    return json.dumps([{
+            'top': '0',
+            'bottom': '100',
+            'left': '0',
+            'right': '0',
+            'result': code,
+    }])
+
+RESP_GOOD_MASK, RESP_INCORRECT_MASK, RESP_NO_MASK = [
+    cropped_resp(x) for x in (2, 1, 0)
+]
+
+
 @app.route('/')
 def index():
     return send_from_directory(STATIC, 'index.html')
@@ -46,18 +62,15 @@ def index():
 
 @app.route('/test', methods=['POST'])
 def upload_text():
-    print('Upload detected')
-    # print(f'This is our request:\n{request.form}')
-    # text_returned = []
-    # for key in request.form.keys():
-    #     text_returned.append(f'{key} -> {request.form[key]}')
-    # for x in request.files:
-    #     upload = request.files[x]
-    #     filename = secure_filename(upload.filename)
-    #     upload.save(os.path.join('uploads', filename))
-    # return '\n'.join(text_returned)
-    # return {'data': DEFAULT_RESPONSE}
+    # print('Upload detected')
     return Response(DEFAULT_RESPONSE, status=200, mimetype='application/json')
+
+
+@app.route('/detect', methods=['POST'])
+def cropped_face():
+    # Use the seconds of the minute as a placeholder "detection"
+    status = (dt.now().second // 20)
+    return Response(cropped_resp(status), status=200, mimetype='application/json')
 
 
 '''

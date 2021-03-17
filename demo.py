@@ -14,31 +14,33 @@ CORS(app)
 STATIC = 'flask/static'
 UPLOADS = 'flask/uploads'
 
-DEFAULT_RESPONSE = """
-    [
+NO_MASK = 0
+INCORRECT = 1
+MASK = 2
+
+DEFAULT_RESPONSE = json.dumps([
     {
-        "top": "14",
-        "bottom": "71",
-        "left": "6.5",
-        "right": "23",
-        "result": 0
+        'result': NO_MASK,
+        'top': '16',
+        'bottom': '40',
+        'left': '18',
+        'right': '31',
     },
     {
-        "top": "10",
-        "bottom": "67",
-        "left": "42",
-        "right": "58",
-        "result": 1
+        'result': MASK,
+        'top': '50',
+        'bottom': '77',
+        'left': '45',
+        'right': '57',
     },
     {
-        "top": "4",
-        "bottom": "67",
-        "left": "74.5",
-        "right": "93",
-        "result": 2
-    }
-    ]
-    """
+        'result': INCORRECT,
+        'top': '16',
+        'bottom': '37',
+        'left': '68',
+        'right': '78',
+    },
+])
 
 
 def cropped_resp(code):
@@ -46,7 +48,7 @@ def cropped_resp(code):
             'top': '0',
             'bottom': '100',
             'left': '0',
-            'right': '0',
+            'right': '100',
             'result': code,
     }])
 
@@ -68,7 +70,12 @@ def upload_text():
 
 @app.route('/detect', methods=['POST'])
 def cropped_face():
+
+    # The image uploaded by the user
+    # image = request.files[0]
+
     # Use the seconds of the minute as a placeholder "detection"
+    # 0=no mask, 1=mask incorrect, 2=mask worn correctly
     status = (dt.now().second // 20)
     return Response(cropped_resp(status), status=200, mimetype='application/json')
 

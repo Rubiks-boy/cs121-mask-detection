@@ -14,7 +14,7 @@ function App() {
     const [masks, updateMasks] = useState([])
 
     return (
-        // <MaskResults image={mask} boxes={data} />
+        // <MaskResjults image={mask} boxes={data} />
         // <Viewer image={mask} boxes={data} />
         // <UploadImage />
         // <ImageUpload />

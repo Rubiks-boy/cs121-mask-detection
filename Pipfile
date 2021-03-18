@@ -9,7 +9,7 @@ gunicorn = "*"
 flask-cors = "*"
 opencv-python = "*"
 numpy = "*"
-fastai = "===2.0.11"
+fastai = "===2.1.10"
 
 [dev-packages]
 pylint = "*"

@@ -9,6 +9,7 @@ gunicorn = "*"
 flask-cors = "*"
 opencv-python = "*"
 numpy = "*"
+fastai = "===2.1.10"
 
 [dev-packages]
 pylint = "*"
@@ -16,4 +17,4 @@ yapf = "*"
 ipython = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"

@@ -8,10 +8,11 @@ flask = "*"
 gunicorn = "*"
 opencv-python = "*"
 numpy = "*"
+fastai = "===2.0.11"
 
 [dev-packages]
 pylint = "*"
 yapf = "*"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"

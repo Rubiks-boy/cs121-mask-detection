@@ -3,8 +3,8 @@ import React from 'react'
 import axios from 'axios'
 import './Upload.css'
 
-// const maskAPI = 'http://localhost:5000'
-const maskAPI = 'https://hirsch-cs121-demo.herokuapp.com'
+const maskAPI = 'http://localhost:5000'
+// const maskAPI = 'https://hirsch-cs121-demo.herokuapp.com'
 
 export default function Upload(props) {
     // let [file, fileUpload] = useState(null);
@@ -22,7 +22,7 @@ export default function Upload(props) {
         const endpoint = queryParams.get('endpoint')
 
         axios
-            .post(`${maskAPI}/${endpoint || 'detect'}`)
+            .post(`${maskAPI}/${endpoint || 'detect'}`, data)
             .then((res) => {
                 // then print response status
                 console.log('Uploaded from Axios')

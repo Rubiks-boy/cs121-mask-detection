@@ -6,6 +6,8 @@ from datetime import datetime as dt
 # from werkzeug.utils import secure_filename
 # import os.path
 import json
+import sys
+import os
 
 app = Flask(__name__)
 # TODO: we're allowing access from any origin
@@ -72,22 +74,15 @@ def upload_text():
 def cropped_face():
 
     # The image uploaded by the user
+    print("Hello I am printing", file=sys.stderr)
+    image = dict(request.files.lists())["file"][0]
+    # print("Printing the image:", image, type(image), file=sys.stderr)
+    cwd = os.path.dirname(os.path.realpath(__file__))
+    print("dir: ", cwd, file=sys.stderr)
+    image.save(os.path.join(cwd, "upload"))
     # image = request.files[0]
 
     # Use the seconds of the minute as a placeholder "detection"
     # 0=no mask, 1=mask incorrect, 2=mask worn correctly
     status = (dt.now().second // 20)
     return Response(cropped_resp(status), status=200, mimetype='application/json')
-
-
-'''
-""" Simple hello world flask app """
-from flask import Flask
-app = Flask(__name__)
-
-
-@app.route('/')
-@app.route('/index')
-def index():
-    return 'Hello, cs121 World!'
-'''

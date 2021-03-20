@@ -79,7 +79,7 @@ def cropped_face():
     # print("Printing the image:", image, type(image), file=sys.stderr)
     cwd = os.path.dirname(os.path.realpath(__file__))
     print("dir: ", cwd, file=sys.stderr)
-    image.save(os.path.join(cwd, "upload"))
+    image.save(os.path.join(cwd, "upload", "test.png"))
     # image = request.files[0]
 
     # Use the seconds of the minute as a placeholder "detection"

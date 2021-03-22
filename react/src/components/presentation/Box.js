@@ -3,9 +3,9 @@ import './Box.css'
 
 const CSS_BLOCK = 'face-box'
 const MASK_POSITION = {
-    0: `${CSS_BLOCK}__none`,
-    1: `${CSS_BLOCK}__incorrect`,
-    2: `${CSS_BLOCK}__correct`,
+    0: `${CSS_BLOCK}--none`,
+    1: `${CSS_BLOCK}--incorrect`,
+    2: `${CSS_BLOCK}--correct`,
 }
 
 export default function Box(props) {

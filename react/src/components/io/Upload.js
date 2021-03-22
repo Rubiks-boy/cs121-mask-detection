@@ -1,14 +1,10 @@
-// import React, { useState } from 'react'
 import React from 'react'
 import axios from 'axios'
-import './Upload.css'
 
 // const maskAPI = 'http://localhost:5000'
 const maskAPI = 'https://hirsch-cs121-demo.herokuapp.com'
 
 export default function Upload(props) {
-    // let [file, fileUpload] = useState(null);
-
     function handleChange(e) {
         const objURL = URL.createObjectURL(e.target.files[0])
         // fileUpload(objURL);
@@ -42,24 +38,3 @@ export default function Upload(props) {
         </div>
     )
 }
-
-// class Upload extends React.Component {
-//     constructor(props){
-//       super(props)
-//       this.state = {
-//         file: null
-//       }    this.handleChange = this.handleChange.bind(this)
-//     }  handleChange(event) {
-//       this.setState({
-//         file: URL.createObjectURL(event.target.files[0])
-//       })
-//     }  render() {
-//       return (
-//         <div>
-//           <input type="file" onChange={this.handleChange}/>
-//           <img src={this.state.file}/>
-//         </div>
-//       );
-//     }
-//   }
-//   module.exports = Upload

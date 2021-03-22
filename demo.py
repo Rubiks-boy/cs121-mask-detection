@@ -21,24 +21,24 @@ MASK = 2
 DEFAULT_RESPONSE = json.dumps([
     {
         'result': NO_MASK,
-        'top': '16',
-        'bottom': '40',
-        'left': '18',
-        'right': '31',
+        'top': 16,
+        'bottom': 40,
+        'left': 18,
+        'right': 31,
     },
     {
         'result': MASK,
-        'top': '50',
-        'bottom': '77',
-        'left': '45',
-        'right': '57',
+        'top': 50,
+        'bottom': 77,
+        'left': 45,
+        'right': 57,
     },
     {
         'result': INCORRECT,
-        'top': '16',
-        'bottom': '37',
-        'left': '68',
-        'right': '78',
+        'top': 16,
+        'bottom': 37,
+        'left': 68,
+        'right': 78,
     },
 ])
 

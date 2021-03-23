@@ -1,20 +1,17 @@
 from flask import Flask, request, send_from_directory, Response
 from flask_cors import CORS
-
-from datetime import datetime as dt
 # from markupsafe import escape
 # from werkzeug.utils import secure_filename
-# import os.path
-from fastai.learner import load_learner
 import json
-import sys
 import os
-## Imports to run on Windows correctly
-import pathlib
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
-#######################################
-from .models.demo2 import full_detect_flow
+
+# Imports for debugging ( print("", file=sys.stderr) )
+from datetime import datetime as dt
+import sys
+
+# Import our models
+from .models.detection_model import full_detect_flow
+from .models.classification_model import make_prediction
 
 app = Flask(__name__)
 # TODO: we're allowing access from any origin
@@ -65,20 +62,7 @@ RESP_GOOD_MASK, RESP_INCORRECT_MASK, RESP_NO_MASK = [
     cropped_resp(x) for x in (2, 1, 0)
 ]
 
-def make_prediction(image_path):
 
-    model = load_learner("face_mask_classifier.pkl", cpu=True)
-    prediction = model.predict(image_path)
-    mask_class = prediction[0]
-
-    if mask_class == "without_mask":
-        return RESP_NO_MASK
-    elif mask_class == "with_mask":
-        return RESP_GOOD_MASK
-    elif mask_class == "mask_weared_incorrect":
-        return RESP_INCORRECT_MASK
-    else:
-        return "AAAAAHHHH"
 
 @app.route('/')
 def index():
@@ -94,22 +78,19 @@ def upload_text():
 @app.route('/detect', methods=['POST'])
 def cropped_face():
 
-    # The image uploaded by the user
-    print("Hello I am printing", file=sys.stderr)
+    # Get and Save the uploaded image
     image = dict(request.files.lists())["file"][0]
-    # print("Printing the image:", image, type(image), file=sys.stderr)
     cwd = os.path.dirname(os.path.realpath(__file__))
-    # print("dir: ", cwd, file=sys.stderr)
     image_path = os.path.join(cwd, "upload", "my_upload.png")
     image.save(image_path)
-    coords = full_detect_flow(image_path)
-    print("Successful!", file=sys.stderr)
-
-
-    
+    # Call the Face Detection Model
+    coords = full_detect_flow(image_path, save=False)
+    print("Face Detected Successfully!", file=sys.stderr)
+    print(coords, file=sys.stderr) 
+    # TODO: Transform coords to useable format
+    # Call the Facee Classifier
     prediction = make_prediction(image_path)
     print("Model Prediction: ", prediction, file=sys.stderr)
     return Response(prediction)
-    # Is this arg necessary???
-    # mimetype='application/json'
+
 

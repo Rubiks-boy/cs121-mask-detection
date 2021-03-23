@@ -38,7 +38,7 @@ def detect_faces(frame, faceNet):
     return locs
 
 
-def full_detect_flow(fname):
+def full_detect_flow(fname, save = False):
     # read image
     img = cv2.imread(fname)
 
@@ -51,17 +51,8 @@ def full_detect_flow(fname):
 
     image_path = os.path.join(cwd, "..", "upload", "my_upload_new.png")
 
-    # FLAG decide to save image
-    cv2.imwrite(image_path,img)
+    if save:
+        # FLAG decide to save image
+        cv2.imwrite(image_path,img)
+    
     return detections
-
-
-# if __name__ == "__main__":
-#     counter = 0
-#     imgs_path = os.path.join(cwd, "archive", "images", "*.png")
-
-#     for file in glob.glob(imgs_path):
-#         if counter < 20:
-#             print(file)
-#             full_detect_flow(file)
-#             counter += 1

@@ -14,7 +14,7 @@ import pathlib
 temp = pathlib.PosixPath
 pathlib.PosixPath = pathlib.WindowsPath
 #######################################
-
+from .models.demo2 import full_detect_flow
 
 app = Flask(__name__)
 # TODO: we're allowing access from any origin
@@ -102,6 +102,11 @@ def cropped_face():
     # print("dir: ", cwd, file=sys.stderr)
     image_path = os.path.join(cwd, "upload", "my_upload.png")
     image.save(image_path)
+    coords = full_detect_flow(image_path)
+    print("Successful!", file=sys.stderr)
+
+
+    
     prediction = make_prediction(image_path)
     print("Model Prediction: ", prediction, file=sys.stderr)
     return Response(prediction)

@@ -2,7 +2,7 @@ import os
 import json
 
 ## Imports to run on Windows correctly
-import pathlib
+# import pathlib
 # temp = pathlib.PosixPath
 # pathlib.PosixPath = pathlib.WindowsPath
 

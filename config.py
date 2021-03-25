@@ -3,8 +3,8 @@ import json
 
 ## Imports to run on Windows correctly
 import pathlib
-temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
+# temp = pathlib.PosixPath
+# pathlib.PosixPath = pathlib.WindowsPath
 
 STATIC = 'flask/static'
 UPLOADS = 'flask/uploads'

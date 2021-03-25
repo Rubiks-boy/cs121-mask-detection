@@ -1,3 +1,7 @@
+# Project Specific
+uploads/
+face_mask_classifier.pkl
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

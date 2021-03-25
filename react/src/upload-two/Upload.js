@@ -22,7 +22,7 @@ export default function Upload(props) {
         const endpoint = queryParams.get('endpoint')
 
         axios
-            .post(`${maskAPI}/${endpoint || 'detect'}`)
+            .post(`${maskAPI}/${endpoint || 'detect'}`, data)
             .then((res) => {
                 // then print response status
                 console.log('Uploaded from Axios')

@@ -8,10 +8,10 @@ def make_prediction(image_path):
     mask_class = prediction[0]
 
     if mask_class == "without_mask":
-        return RESP_NO_MASK
+        return NO_MASK
     elif mask_class == "with_mask":
-        return RESP_GOOD_MASK
+        return MASK
     elif mask_class == "mask_weared_incorrect":
-        return RESP_INCORRECT_MASK
+        return INCORRECT
     else:
         return "AAAAAHHHH"

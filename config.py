@@ -49,6 +49,20 @@ def cropped_resp(code):
             'result': code,
     }])
 
+def box_resp(mylist):
+    json_resp = []
+    for i in range(len(mylist)):
+        (x0,y0,x1,y1) = mylist[i][0]
+        prediction = mylist[i][1]
+        json_resp.append({
+                'top': str(y0),
+                'bottom': str(y1),
+                'left': str(x0),
+                'right': str(x1),
+                'result': prediction,
+        })
+    return json.dumps(json_resp)
+
 RESP_GOOD_MASK, RESP_INCORRECT_MASK, RESP_NO_MASK = [
     cropped_resp(x) for x in (2, 1, 0)
 ]

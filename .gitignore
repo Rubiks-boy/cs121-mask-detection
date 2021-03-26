@@ -1,6 +1,7 @@
 # Project Specific
 uploads/
 face_mask_classifier.pkl
+react/.eslintrc
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

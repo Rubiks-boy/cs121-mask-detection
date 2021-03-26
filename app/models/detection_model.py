@@ -2,12 +2,12 @@
 # models: https://github.com/chandrikadeb7/Face-Mask-Detection/tree/master/face_detector
 import cv2
 import numpy as np
-import os
+from os import path
 import sys
+from ..defines import UPLOAD, MODELS
 
-cwd = os.path.dirname(os.path.realpath(__file__))
-prototxtPath = os.path.join(cwd, "deploy.prototxt")
-weightsPath = os.path.join(cwd,
+prototxtPath = path.join(MODELS, "deploy.prototxt")
+weightsPath = path.join(MODELS,
                            "res10_300x300_ssd_iter_140000.caffemodel")
 faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
@@ -22,11 +22,8 @@ def detect_faces(frame, faceNet):
     locs = []
 
     for i in range(0, detections.shape[2]):
-
         confidence = detections[0, 0, i, 2]
-
         if confidence > 0.25:
-
             box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
             (startX, startY, endX, endY) = box.astype("int")
 
@@ -39,13 +36,11 @@ def detect_faces(frame, faceNet):
 
 def coords_to_perc(detections, img):
     (h, w, c) = img.shape
-
     perc = []
     for (x0, y0, x1, y1) in detections:
         perc.append(
             ( (100*x0)//w, (100*y0)//h, (100*x1)//w, (100*y1)//h ) 
             )
-
     return perc
 
 def full_detect_flow(fname, save = False):
@@ -57,8 +52,7 @@ def full_detect_flow(fname, save = False):
     paths = []
 
     for (x0, y0, x1, y1) in detections:
-        # cv2.rectangle(image, start_point, end_point, color, thickness)
-        print([y0, y1, x0, x1],file=sys.stderr)
+        # print([y0, y1, x0, x1],file=sys.stderr)
         if x1<x0:
             temp = x0
             x0 = x1
@@ -71,17 +65,13 @@ def full_detect_flow(fname, save = False):
         
         cv2.rectangle(img, (x0, y0), (x1, y1), (255, 0, 0), 2)
     
-
     if save:
         # FLAG decide to save image
-        image_path = os.path.join(cwd, "..", "upload", "my_upload_new.png")
+        image_path = path.join(UPLOAD, "my_upload_new.png")
         cv2.imwrite(image_path,img)
         num = 0
         for face in faces:
-            my_path = os.path.join(cwd, "..", "upload", "face_"+str(num)+".png")
-            print("DEBUGGGIN!!!!!!", file=sys.stderr)
-            print(my_path, file=sys.stderr)
-            # print(face, file=sys.stderr)
+            my_path = path.join(UPLOAD, "face_"+str(num)+".png")
             cv2.imwrite(my_path, face)
             paths.append(my_path)
             num += 1

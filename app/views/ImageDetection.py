@@ -1,9 +1,9 @@
 from flask import request, Response, Blueprint
 import os
 # Import our models
-from app.models.detection_model import full_detect_flow
-from app.models.classification_model import make_prediction
-from app.defines import *
+from ..models.detection_model import full_detect_flow
+from ..models.classification_model import make_prediction
+from ..defines import *
 # Imports for debugging ( print("", file=sys.stderr) )
 import sys
 
@@ -19,10 +19,7 @@ def cropped_face():
     # Call the Face Detection Model
     (coords, face_paths) = full_detect_flow(image_path, save=True)
     print("Face Detected Successfully!", file=sys.stderr)
-    # print(coords, file=sys.stderr) 
-    # print(face_paths, file=sys.stderr)
     
-    # TODO: Transform coords to useable format
     # Call the Facee Classifier
     predictions = []
     for face_path in face_paths:

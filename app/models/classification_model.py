@@ -1,9 +1,8 @@
-from app.defines import *
+from ..defines import *
 from fastai.learner import load_learner
-import os
+from os import path
 
-cwd = os.path.dirname(os.path.realpath(__file__))
-modelPath = os.path.join(cwd, "face_mask_classifier.pkl")
+modelPath = path.join(MODELS, "face_mask_classifier.pkl")
 
 def make_prediction(image_path):
     model = load_learner(modelPath, cpu=True)

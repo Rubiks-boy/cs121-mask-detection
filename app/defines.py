@@ -10,6 +10,7 @@ if system() == "Windows":
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 UPLOAD = os.path.join(BASE_DIR, "upload")
+MODELS = os.path.join(BASE_DIR, "static", "models")
 
 NO_MASK = 0
 INCORRECT = 1

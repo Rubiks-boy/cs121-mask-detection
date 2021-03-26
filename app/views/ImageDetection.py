@@ -1,13 +1,11 @@
 from flask import request, Response, Blueprint
 import os
-
-# Imports for debugging ( print("", file=sys.stderr) )
-import sys
-
 # Import our models
 from app.models.detection_model import full_detect_flow
 from app.models.classification_model import make_prediction
 from app.defines import *
+# Imports for debugging ( print("", file=sys.stderr) )
+import sys
 
 ImageDetection = Blueprint("ImageDetection", __name__)
 
@@ -39,10 +37,3 @@ def cropped_face():
         faces_and_coords.append((coord, prediction))
     # print("Model Prediction: ", predictions, file=sys.stderr)
     return Response(box_resp(faces_and_coords))
-
-
-# Example View
-# @ImageDetection.route('/about')
-# def about(user_url_slug):
-#     # Do some stuff
-#     return render_template('ImageDetection/about.html')

@@ -12,6 +12,7 @@ CORS(app)
 
 # Load the blueprint views
 app.register_blueprint(ImageDetection, url_prefix='')
+# app.register_blueprint(VideoDetection, url_prefix='')
 
 # Old Testing Views
 @app.route('/')

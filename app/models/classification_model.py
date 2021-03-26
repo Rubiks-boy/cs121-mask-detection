@@ -1,4 +1,4 @@
-from ..config import *
+from app.defines import *
 from fastai.learner import load_learner
 import os
 

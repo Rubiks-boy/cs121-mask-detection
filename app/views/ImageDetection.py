@@ -1,36 +1,17 @@
-from flask import Flask, request, send_from_directory, Response
-from flask_cors import CORS
-# from markupsafe import escape
-# from werkzeug.utils import secure_filename
-import json
+from flask import request, Response, Blueprint
 import os
 
 # Imports for debugging ( print("", file=sys.stderr) )
-from datetime import datetime as dt
 import sys
 
 # Import our models
-from .models.detection_model import full_detect_flow
-from .models.classification_model import make_prediction
-from .config import *
+from app.models.detection_model import full_detect_flow
+from app.models.classification_model import make_prediction
+from app.defines import *
 
-app = Flask(__name__)
-# TODO: we're allowing access from any origin
-# this is like, pretty not so great...
-CORS(app)
+ImageDetection = Blueprint("ImageDetection", __name__)
 
-@app.route('/')
-def index():
-    return send_from_directory(STATIC, 'index.html')
-
-
-@app.route('/test', methods=['POST'])
-def upload_text():
-    # print('Upload detected')
-    return Response(DEFAULT_RESPONSE, status=200, mimetype='application/json')
-
-
-@app.route('/detect', methods=['POST'])
+@ImageDetection.route('/detect', methods=['POST'])
 def cropped_face():
 
     # Get and Save the uploaded image
@@ -59,3 +40,9 @@ def cropped_face():
     # print("Model Prediction: ", predictions, file=sys.stderr)
     return Response(box_resp(faces_and_coords))
 
+
+# Example View
+# @ImageDetection.route('/about')
+# def about(user_url_slug):
+#     # Do some stuff
+#     return render_template('ImageDetection/about.html')

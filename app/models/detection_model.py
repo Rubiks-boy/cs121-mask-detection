@@ -2,7 +2,6 @@
 # models: https://github.com/chandrikadeb7/Face-Mask-Detection/tree/master/face_detector
 import cv2
 import numpy as np
-import glob
 import os
 import sys
 

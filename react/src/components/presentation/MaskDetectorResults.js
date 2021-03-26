@@ -5,12 +5,12 @@ import Box from './Box'
 
 export default function MaskResults(props) {
     return (
-        <div className="mask-results">
+        <div className="mask-detector-results">
             {props.boxes.map((x) => (
                 // eslint-disable-next-line react/jsx-props-no-spreading
                 <Box key={x + nanoid()} {...x} />
             ))}
-            <img src={props.image} alt="Face mask results" />
+            <img src={props.image} className="mask-detector-results__img" alt="Face mask results" />
         </div>
     )
 }

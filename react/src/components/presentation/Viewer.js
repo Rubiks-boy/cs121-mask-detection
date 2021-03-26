@@ -1,11 +1,11 @@
 import React from 'react'
-import MaskResults from './MaskResults'
+import MaskDetectorResults from './MaskDetectorResults'
 import Controls from './Controls'
 
 export default function Viewer(props) {
     return (
         <div>
-            <MaskResults image={props.image} boxes={props.boxes} />
+            <MaskDetectorResults image={props.image} boxes={props.boxes} />
             <Controls />
         </div>
     )

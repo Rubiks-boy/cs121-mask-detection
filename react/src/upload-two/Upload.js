@@ -3,8 +3,8 @@ import React from 'react'
 import axios from 'axios'
 import './Upload.css'
 
-// const maskAPI = 'http://localhost:5000'
-const maskAPI = 'https://hirsch-cs121-demo.herokuapp.com'
+const maskAPI = 'http://localhost:5000'
+// const maskAPI = 'https://hirsch-cs121-demo.herokuapp.com'
 
 export default function Upload(props) {
     // let [file, fileUpload] = useState(null);

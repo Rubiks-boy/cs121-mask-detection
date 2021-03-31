@@ -23,6 +23,11 @@ Pipfile
 Pipfile.lock
 
 .pylintrc
+.env
 Procfile
 README.md
 runtime.txt
+requirements-dev.txt
+
+OpenCV_Demos
+react

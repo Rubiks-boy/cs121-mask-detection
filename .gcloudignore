@@ -21,3 +21,8 @@ __pycache__/
 # Pipfile
 Pipfile
 Pipfile.lock
+
+.pylintrc
+Procfile
+README.md
+runtime.txt

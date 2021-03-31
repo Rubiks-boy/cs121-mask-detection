@@ -1,6 +1,6 @@
 runtime: python37
-
-entrypoint: gunicorn -b :$PORT main:app
+instance_class: F4
+entrypoint: gunicorn run:app
 
 handlers:
   # This configures Google App Engine to serve the files in the app's static

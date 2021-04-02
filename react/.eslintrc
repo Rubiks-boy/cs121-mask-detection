@@ -21,7 +21,8 @@
         "react-hooks/rules-of-hooks":           "error",
         "react-hooks/exhaustive-deps":          "warn",
         "react/prop-types": "warn",
-        "react/destructuring-assignment": "warn"
+        "react/destructuring-assignment": "warn",
+        "linebreak-style": 0
     },
     "parserOptions": {
         "ecmaFeatures": {

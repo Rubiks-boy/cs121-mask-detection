@@ -1,3 +1,8 @@
+# Project Specific
+uploads/
+face_mask_classifier.pkl
+react/.eslintrc
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -105,7 +110,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/

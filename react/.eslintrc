@@ -22,6 +22,7 @@
         "react-hooks/exhaustive-deps":          "warn",
         "react/prop-types": "warn",
         "react/destructuring-assignment": "warn",
+        "react/jsx-props-no-spreading": "warn",
         "linebreak-style": 0
     },
     "parserOptions": {

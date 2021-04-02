@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 // const maskAPI = 'http://localhost:5000'
-const maskAPI = 'https://hirsch-cs121-demo.herokuapp.com'
+// const maskAPI = 'https://hirsch-cs121-demo.herokuapp.com'
+const maskAPI = 'https://facee-309423.wl.r.appspot.com'
 
 export default function handleUpload(updateImage, updateMasks) {
     function handleChange(e) {

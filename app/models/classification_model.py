@@ -9,9 +9,9 @@ def make_prediction(image_path):
     prediction = model.predict(image_path)
     mask_class = prediction[0]
 
-    if mask_class == "without_mask":
+    if mask_class == "no_mask":
         return NO_MASK
-    elif mask_class == "with_mask":
+    elif mask_class == "mask":
         return MASK
     elif mask_class == "mask_weared_incorrect":
         return INCORRECT

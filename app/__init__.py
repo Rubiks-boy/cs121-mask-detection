@@ -17,7 +17,7 @@ app.register_blueprint(ImageDetection, url_prefix='')
 # Old Testing Views
 @app.route('/')
 def index():
-    print("Trying to find index page", file=sys.stderr)
+    print(BASE_DIR, file=sys.stderr)
     return render_template('index.html')
 
 

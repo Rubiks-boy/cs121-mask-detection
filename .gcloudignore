@@ -24,6 +24,7 @@ Pipfile.lock
 
 .pylintrc
 .env
+.vscode
 Procfile
 README.md
 runtime.txt
@@ -31,3 +32,7 @@ requirements-dev.txt
 
 OpenCV_Demos
 react
+
+run.py
+
+face_mask_classifier.zip

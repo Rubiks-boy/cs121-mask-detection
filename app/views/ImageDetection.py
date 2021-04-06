@@ -14,7 +14,7 @@ def cropped_face():
 
     # Get and Save the uploaded image
     image = dict(request.files.lists())["file"][0]
-    image_path = os.path.join(BASE_DIR, "upload", "my_upload.png")
+    image_path = os.path.join(UPLOAD, "my_upload.png")
     image.save(image_path)
     # Call the Face Detection Model
     (coords, face_paths) = full_detect_flow(image_path, save=True)

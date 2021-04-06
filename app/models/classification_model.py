@@ -1,4 +1,4 @@
-from ..defines import *
+from ..defines import NO_MASK, MASK, INCORRECT, MODELS
 from fastai.learner import load_learner
 from os import path
 

@@ -3,23 +3,22 @@ import os
 # Import our models
 from ..models.detection_model import full_detect_flow
 from ..models.classification_model import make_prediction
-from ..defines import *
-# Imports for debugging ( print("", file=sys.stderr) )
+from ..defines import BASE_DIR, box_resp
+# Imports for debugging ( print('', file=sys.stderr) )
 import sys
 
-ImageDetection = Blueprint("ImageDetection", __name__)
+image_detection = Blueprint('image_detection', __name__)
 
-@ImageDetection.route('/detect', methods=['POST'])
+@image_detection.route('/detect', methods=['POST'])
 def cropped_face():
-
     # Get and Save the uploaded image
-    image = dict(request.files.lists())["file"][0]
-    image_path = os.path.join(BASE_DIR, "upload", "my_upload.png")
+    image = dict(request.files.lists())['file'][0]
+    image_path = os.path.join(BASE_DIR, 'upload', 'my_upload.png')
     image.save(image_path)
     # Call the Face Detection Model
     (coords, face_paths) = full_detect_flow(image_path, save=True)
-    print("Face Detected Successfully!", file=sys.stderr)
-    
+    print('Face Detected Successfully!', file=sys.stderr)
+
     # Call the Facee Classifier
     predictions = []
     for face_path in face_paths:
@@ -32,5 +31,5 @@ def cropped_face():
         prediction = predictions[i]
 
         faces_and_coords.append((coord, prediction))
-    # print("Model Prediction: ", predictions, file=sys.stderr)
+    # print('Model Prediction: ', predictions, file=sys.stderr)
     return Response(box_resp(faces_and_coords))

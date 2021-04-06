@@ -3,21 +3,20 @@
 import cv2
 import numpy as np
 from os import path
-import sys
 from ..defines import UPLOAD, MODELS
 
 prototxtPath = path.join(MODELS, "deploy.prototxt")
 weightsPath = path.join(MODELS,
-                           "res10_300x300_ssd_iter_140000.caffemodel")
-faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
+                        "res10_300x300_ssd_iter_140000.caffemodel")
+face_net = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 
-def detect_faces(frame, faceNet):
+def detect_faces(frame, face_net):
     (h, w) = frame.shape[:2]
     blob = cv2.dnn.blobFromImage(frame, 1.0, (500, 500), (104.0, 177.0, 123.0))
 
-    faceNet.setInput(blob)
-    detections = faceNet.forward()
+    face_net.setInput(blob)
+    detections = face_net.forward()
 
     locs = []
 
@@ -25,55 +24,52 @@ def detect_faces(frame, faceNet):
         confidence = detections[0, 0, i, 2]
         if confidence > 0.25:
             box = detections[0, 0, i, 3:7] * np.array([w, h, w, h])
-            (startX, startY, endX, endY) = box.astype("int")
+            (start_x, start_y, end_x, end_y) = box.astype("int")
 
-            (startX, startY) = (max(0, startX), max(0, startY))
-            (endX, endY) = (min(w - 1, endX), min(h - 1, endY))
+            (start_x, start_y) = (max(0, start_x), max(0, start_y))
+            (end_x, end_y) = (min(w - 1, end_x), min(h - 1, end_y))
 
-            locs.append((startX, startY, endX, endY))
+            locs.append((start_x, start_y, end_x, end_y))
 
     return locs
 
+
 def coords_to_perc(detections, img):
-    (h, w, c) = img.shape
+    (h, w, _) = img.shape
     perc = []
     for (x0, y0, x1, y1) in detections:
         perc.append(
-            ( (100*x0)//w, (100*y0)//h, (100*x1)//w, (100*y1)//h ) 
-            )
+            ((100*x0)//w, (100*y0)//h, (100*x1)//w, (100*y1)//h)
+        )
     return perc
 
-def full_detect_flow(fname, save = False):
+
+def full_detect_flow(fname, save=False):
     # read image
     img = cv2.imread(fname)
 
-    detections = detect_faces(img, faceNet)
+    detections = detect_faces(img, face_net)
     faces = []
     paths = []
 
     for (x0, y0, x1, y1) in detections:
-        # print([y0, y1, x0, x1],file=sys.stderr)
-        if x1<x0:
-            temp = x0
-            x0 = x1
-            x1 = temp
-        if y1<y0:
-            temp = y0
-            y0 = y1
-            y1 = temp
+        if x1 < x0:
+            (x0, x1) = (x1, x0)
+        if y1 < y0:
+            (y0, y1) = (y1, y0)
         faces.append(img[y0:y1, x0:x1])
-        
+
         cv2.rectangle(img, (x0, y0), (x1, y1), (255, 0, 0), 2)
-    
+
     if save:
         # FLAG decide to save image
         image_path = path.join(UPLOAD, "my_upload_new.png")
-        cv2.imwrite(image_path,img)
+        cv2.imwrite(image_path, img)
         num = 0
         for face in faces:
             my_path = path.join(UPLOAD, "face_"+str(num)+".png")
             cv2.imwrite(my_path, face)
             paths.append(my_path)
             num += 1
-    
+
     return (coords_to_perc(detections, img), paths)

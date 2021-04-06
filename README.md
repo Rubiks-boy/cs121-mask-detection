@@ -14,7 +14,7 @@ Upon visiting our [web application](https://cs121-mask-detection.netlify.app/), 
 Note that classifying incorrect mask wearing ("yellow" boxes) is not implemented in our MVP (as of 7 Apr 2021); see below for more information.
 
 ### Hosting
-We use [Google Cloud Platform](https://cloud.google.com/) to host our Flask back end, which includes all of our models. We use [Netlify](https://www.netlify.com/) to host our front end React application.
+We use [Google Cloud Platform](https://cloud.google.com/) to host our [Flask back end](https://facee-309423.wl.r.appspot.com/), which includes all of our models. We use [Netlify](https://www.netlify.com/) to host our front end React application.
 
 ### Models
 All deployed models can be found [here](https://github.com/Rubiks-boy/cs121-mask-detection/tree/main/app/static).

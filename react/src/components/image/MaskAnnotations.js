@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Box } from '@material-ui/core'
 import { nanoid } from 'nanoid'
 import './MaskResults.css'
-import ImgAnnotation from './Box'
+import ImgAnnotation from './ImgAnnotation'
 
 export default function MaskAnnotations({ boxes, image, catsDisplayed }) {
     const boxesToDisplay = boxes.filter((x) => catsDisplayed[x.result])

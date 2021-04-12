@@ -1,8 +1,6 @@
 .face-box {
-    position: absolute;
     outline: 5px solid;
     box-shadow: 0 0 10px black;
-    /* padding: 10px; */
 }
 
 .face-box:hover {

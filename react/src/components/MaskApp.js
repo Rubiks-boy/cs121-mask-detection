@@ -7,7 +7,7 @@ export default function MaskApp() {
     const [image, updateImage] = useState(null)
     const [masks, updateMasks] = useState([])
     return (
-        <Container component="main" maxWidth="md">
+        <Container component="main" maxWidth="lg">
             <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
                 <Grid item xs={12}>
                     <Upload updateImage={updateImage} updateMasks={updateMasks} />

@@ -21,7 +21,7 @@ export default function MaskResults({ boxes, image }) {
     return (
         <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
             <Grid item xs={12} md={7}>
-                <MaskAnnotations boxes={boxes} image={image} />
+                <MaskAnnotations boxes={boxes} image={image} catsDisplayed={catsDisplayed} />
             </Grid>
             <Grid container item direction="column" xs={12} sm={9} md={5}>
                 <Grid item xs={12}>

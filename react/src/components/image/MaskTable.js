@@ -16,7 +16,7 @@ export default function MaskTable({ boxes, showCat, onCheckEvent }) {
     // const numIncorrectMasks = boxes.filter((x) => x.result === 1).length
     // const numGoodMasks = boxes.filter((x) => x.result === 2).length
 
-    const names = ['Mask', 'Incorrect Mask', 'No Mask']
+    const names = ['No Mask', 'Incorrect Mask', 'Mask']
     const nums = [0, 1, 2].map((i) => boxes.filter((x) => x.result === i).length)
 
     const rows = [0, 1, 2].map((i) => {

@@ -15,14 +15,15 @@ app.register_blueprint(image_detection, url_prefix='')
 # app.register_blueprint(video_detection, url_prefix='')
 
 
+# These old views are for testing, not currently used by our app
 @app.route('/')
 def index():
-    # Old Testing Views
+    # Not in Use
     print('Trying to find index page', file=sys.stderr)
     return render_template('index.html')
 
-
 @app.route('/test', methods=['POST'])
 def upload_text():
+    # Not in Use
     # print('Upload detected')
     return Response(DEFAULT_RESPONSE, status=200, mimetype='application/json')

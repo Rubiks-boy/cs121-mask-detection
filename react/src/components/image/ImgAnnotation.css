@@ -1,24 +1,20 @@
 .face-box {
-    position: absolute;
     outline: 5px solid;
     box-shadow: 0 0 10px black;
-    /* outline-radius: 5px; */
-    /* TODO(amhirsch): Add drop shadown */
 }
 
 .face-box:hover {
     outline-width: 8px;
-    /* outline-radius: 10px; */
 }
 
-.face-box__correct {
+.face-box--correct {
     outline-color: lime;
 }
 
-.face-box__incorrect {
+.face-box--incorrect {
     outline-color: yellow;
 }
 
-.face-box__none {
+.face-box--none {
     outline-color: red;
 }

@@ -4,19 +4,19 @@ const maskAPI = 'https://facee-309423.wl.r.appspot.com'
 
 export default function handleUpload(updateImage, updateMasks, setLoading) {
     function handleChange(e) {
-        const objURL = URL.createObjectURL(e.target.files[0])
-        // fileUpload(objURL);
-        console.log(objURL)
-        // Update image and remove masks annotation from before
-        updateImage(objURL)
+        const imgFile = e[0]
+        const imgBlob = URL.createObjectURL(imgFile)
         updateMasks([])
+        updateImage(imgBlob)
 
         // After loading true until a response is back
         setLoading(true)
 
+        // eslint-disable-next-line no-undef
         const data = new FormData()
-        data.append('file', e.target.files[0])
+        data.append('file', imgFile)
 
+        // eslint-disable-next-line no-undef
         const queryParams = new URLSearchParams(window.location.search)
         const endpoint = queryParams.get('endpoint')
 

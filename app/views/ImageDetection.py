@@ -19,7 +19,7 @@ def cropped_face():
     image.save(image_path)
     # Call the Face Detection Model
     (coords, face_paths) = full_detect_flow(image_path, save=True)
-    print("Face Detected Successfully!", file=sys.stderr)
+    # print("Face Detected Successfully!", file=sys.stderr)
     
     # Call the Face Classifier
     predictions = []

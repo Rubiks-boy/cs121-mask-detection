@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
+import Alert from 'react-bootstrap/Alert'
 import { useDropzone } from 'react-dropzone'
 import handleUpload from './UploadImage'
 
@@ -27,11 +28,31 @@ const rejectStyle = {
     borderColor: '#ff1744',
 }
 
+function FileWarning({ badUpload, setBadUpload }) {
+    function dismissWarning() {
+        setBadUpload(false)
+    }
+    if (badUpload) {
+        return (
+            <Alert variant="warning" onClose={dismissWarning} dismissible>
+                Please only upload a single image.
+            </Alert>
+        )
+    }
+    return null
+}
+
 export default function Upload(props) {
-    const handleChange = handleUpload(props.updateImage, props.updateMasks, props.setLoading)
+    const [badUpload, setBadUpload] = useState(false)
+    const uploadImage = handleUpload(props.updateImage, props.updateMasks, props.setLoading)
+    function handleChange(e) {
+        uploadImage(e)
+        setBadUpload(false)
+    }
 
     const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
         onDropAccepted: handleChange,
+        onDropRejected: () => setBadUpload(true),
         accept: 'image/*',
         multiple: false,
     })
@@ -52,6 +73,7 @@ export default function Upload(props) {
                 <input {...getInputProps()} onChange={handleChange} />
                 <p>Drag and drop picture here</p>
             </div>
+            <FileWarning badUpload={badUpload} setBadUpload={setBadUpload} />
         </section>
     )
 }

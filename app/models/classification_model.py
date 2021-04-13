@@ -5,6 +5,8 @@ from os import path
 modelPath = path.join(MODELS, "face_mask_classifier.pkl")
 
 def make_prediction(image_path):
+    """ Given a path to a cropped face, 
+    return a prediction about that face."""
     model = load_learner(modelPath, cpu=True)
     prediction = model.predict(image_path)
     mask_class = prediction[0]
@@ -16,4 +18,4 @@ def make_prediction(image_path):
     elif mask_class == "mask_weared_incorrect":
         return INCORRECT
     else:
-        return "AAAAAHHHH"
+        return "Something went wrong with the model"

@@ -12,5 +12,5 @@ VideoDetection = Blueprint("VideoDetection", __name__)
 # Example View
 @VideoDetection.route('/about')
 def about(user_url_slug):
-    # Do some stuff
+    """ Stump function for Stretch Goal """
     return render_template('VideoDetection/about.html')

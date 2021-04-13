@@ -17,11 +17,13 @@ app.register_blueprint(ImageDetection, url_prefix='')
 # Old Testing Views
 @app.route('/')
 def index():
+    """Not in Use, for Debugging only"""
     print(BASE_DIR, file=sys.stderr)
     return render_template('index.html')
 
 
 @app.route('/test', methods=['POST'])
 def upload_text():
+    """Not in Use, for Debugging only"""
     # print('Upload detected')
     return Response(DEFAULT_RESPONSE, status=200, mimetype='application/json')

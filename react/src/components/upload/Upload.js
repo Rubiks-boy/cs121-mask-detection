@@ -32,7 +32,7 @@ export default function Upload(props) {
     //         })
     // }
 
-    const handleChange = handleUpload(props.updateImage, props.updateMasks)
+    const handleChange = handleUpload(props.updateImage, props.updateMasks, props.setLoading)
 
     return (
         <div>

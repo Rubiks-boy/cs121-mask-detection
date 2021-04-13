@@ -1,10 +1,11 @@
 import React from 'react'
-import { Container, Box } from '@material-ui/core'
+import { Container, Box, LinearProgress } from '@material-ui/core'
 import { nanoid } from 'nanoid'
 import './MaskResults.css'
 import ImgAnnotation from './ImgAnnotation'
 
-export default function MaskAnnotations({ boxes, image, catsDisplayed }) {
+// eslint-disable-next-line
+export default function MaskAnnotations({ boxes, image, catsDisplayed, loading }) {
     const boxesToDisplay = boxes.filter((x) => catsDisplayed[x.result])
 
     return (
@@ -15,6 +16,8 @@ export default function MaskAnnotations({ boxes, image, catsDisplayed }) {
                     <ImgAnnotation key={x + nanoid()} {...x} />
                 ))}
                 <img src={image} className="mask-detector-results__img" alt="Face mask results" />
+                {/* Show loading bar while loading */}
+                {loading && <LinearProgress color="secondary" />}
             </Container>
         </Box>
     )

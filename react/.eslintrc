@@ -26,12 +26,7 @@
         "react/destructuring-assignment": "warn",
         "react/jsx-props-no-spreading": "warn",
         "linebreak-style": 0,
-        "import/no-unresolved": [
-            2,
-            {
-                "caseSensitive": false
-            }
-        ]
+        "import/no-unresolved": "off"
     },
     "parserOptions": {
         "ecmaFeatures": {

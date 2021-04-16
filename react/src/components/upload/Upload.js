@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Alert from 'react-bootstrap/Alert'
+import Alert from '@material-ui/lab/Alert'
 import { useDropzone } from 'react-dropzone'
 import { makeStyles } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
@@ -25,8 +25,8 @@ function FileWarning({ badUpload, setBadUpload }) {
     }
     if (badUpload) {
         return (
-            <Alert variant="warning" onClose={dismissWarning} dismissible>
-                Please only upload a single image.
+            <Alert severity="warning" onClose={dismissWarning}>
+                Please upload a single image.
             </Alert>
         )
     }

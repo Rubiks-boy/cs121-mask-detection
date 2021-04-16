@@ -16,12 +16,14 @@ const useStyles = makeStyles((theme) => ({
     },
     appBar: {
         borderBottom: `1px solid ${theme.palette.divider}`,
+        backgroundColor: theme.palette.background.paper,
     },
     toolbar: {
         flexWrap: 'wrap',
     },
     toolbarTitle: {
         flexGrow: 1,
+        textAlign: 'left',
     },
     gitButton: {
         marginRight: theme.spacing(1),
@@ -33,7 +35,7 @@ function GitButton() {
     const classes = useStyles()
     return (
         <Button
-            variant="outlined"
+            variant="contained"
             color="primary"
             className={classes.gitButton}
             startIcon={<GitHubIcon />}

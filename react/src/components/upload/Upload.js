@@ -1,23 +1,23 @@
 import React, { useMemo, useState } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import { useDropzone } from 'react-dropzone'
+import { makeStyles } from '@material-ui/core'
 import handleUpload from './UploadImage'
 
-const baseStyle = {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    borderWidth: 2,
-    borderRadius: 2,
-    borderColor: '#eeeeee',
-    borderStyle: 'dashed',
-    backgroundColor: '#fafafa',
-    color: '#bdbdbd',
-    outline: 'none',
-    transition: 'border .24s ease-in-out',
-}
+const useStyles = makeStyles((theme) => ({
+    dropzone: {
+        padding: '20px',
+        borderWidth: 2,
+        borderRadius: 2,
+        borderStyle: 'dashed',
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.secondary,
+        outline: 'none',
+        transition: 'border .24s ease-in-out',
+        cursor: 'pointer',
+    },
+}))
+
 const activeStyle = {
     borderColor: '#2196f3',
 }
@@ -43,6 +43,8 @@ function FileWarning({ badUpload, setBadUpload }) {
 }
 
 export default function Upload(props) {
+    const classes = useStyles()
+
     const [badUpload, setBadUpload] = useState(false)
     const uploadImage = handleUpload(props.updateImage, props.updateMasks, props.setLoading)
     function handleChange(e) {
@@ -59,7 +61,6 @@ export default function Upload(props) {
 
     const style = useMemo(
         () => ({
-            ...baseStyle,
             ...(isDragActive ? activeStyle : {}),
             ...(isDragAccept ? acceptStyle : {}),
             ...(isDragReject ? rejectStyle : {}),
@@ -67,9 +68,11 @@ export default function Upload(props) {
         [isDragActive, isDragReject, isDragAccept]
     )
 
+    console.log(style)
+
     return (
         <section className="upload">
-            <div {...getRootProps({ className: 'dropzone', style })}>
+            <div {...getRootProps({ className: 'dropzone' })} className={classes.dropzone}>
                 <input {...getInputProps()} onChange={handleChange} />
                 <p>Drag and drop picture here</p>
             </div>

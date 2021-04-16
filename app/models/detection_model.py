@@ -12,6 +12,8 @@ face_net = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 
 def detect_faces(frame, face_net):
+    """ Takes our faceNet model and an input image/frame, 
+        and returns the locations of detected faces"""
     (h, w) = frame.shape[:2]
     blob = cv2.dnn.blobFromImage(frame, 1.0, (500, 500), (104.0, 177.0, 123.0))
 
@@ -35,6 +37,8 @@ def detect_faces(frame, face_net):
 
 
 def coords_to_perc(detections, img):
+    """ Helper Function that changes OpenCV coords 
+        to a percentage for the front end """
     (h, w, _) = img.shape
     perc = []
     for (x0, y0, x1, y1) in detections:
@@ -45,31 +49,41 @@ def coords_to_perc(detections, img):
 
 
 def full_detect_flow(fname, save=False):
+    """ Calls detect_faces to get the face locations, and returns a tuple
+        consisting of the faces and their paths. The save flag (to debug) 
+        is to compare the front end's annotations w/ OpenCV's."""
+    
     # read image
     img = cv2.imread(fname)
 
+    # Call the detection model, and store detections coords
     detections = detect_faces(img, face_net)
     faces = []
     paths = []
 
+    # Reformat the detection coords for OpenCV
     for (x0, y0, x1, y1) in detections:
         if x1 < x0:
             (x0, x1) = (x1, x0)
         if y1 < y0:
             (y0, y1) = (y1, y0)
         faces.append(img[y0:y1, x0:x1])
-
-        cv2.rectangle(img, (x0, y0), (x1, y1), (255, 0, 0), 2)
+        if save:
+            # Draw rects over detected faces
+            cv2.rectangle(img, (x0, y0), (x1, y1), (255, 0, 0), 2)
 
     if save:
         # FLAG decide to save image
         image_path = path.join(UPLOAD, "my_upload_new.png")
         cv2.imwrite(image_path, img)
-        num = 0
-        for face in faces:
-            my_path = path.join(UPLOAD, "face_"+str(num)+".png")
-            cv2.imwrite(my_path, face)
-            paths.append(my_path)
-            num += 1
+    
+    # Save each cropped face for the classifier model
+    # TODO: Set a cap to save only "N" faces 
+    num = 0
+    for face in faces:
+        my_path = path.join(UPLOAD, "face_"+str(num)+".png")
+        cv2.imwrite(my_path, face)
+        paths.append(my_path)
+        num += 1
 
     return (coords_to_perc(detections, img), paths)

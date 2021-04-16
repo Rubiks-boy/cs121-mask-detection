@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Container, Grid, makeStyles } from '@material-ui/core'
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core'
 import MaskResults from './image/MaskResults'
 import Upload from './upload/Upload'
 

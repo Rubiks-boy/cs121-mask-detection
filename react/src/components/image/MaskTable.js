@@ -1,15 +1,13 @@
 import React from 'react'
-import {
-    Container,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Paper,
-    Checkbox,
-} from '@material-ui/core'
+import Container from '@material-ui/core/Container'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableContainer from '@material-ui/core/TableContainer'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Checkbox from '@material-ui/core/Checkbox'
 
 export default function MaskTable({ boxes, showCat, onCheckEvent }) {
     // const numNoMasks = boxes.filter((x) => x.result === 0).length

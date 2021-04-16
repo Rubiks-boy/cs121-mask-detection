@@ -1,5 +1,7 @@
 import React from 'react'
-import { Container, Box, LinearProgress } from '@material-ui/core'
+import Container from '@material-ui/core/Container'
+import Box from '@material-ui/core/Box'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import { nanoid } from 'nanoid'
 import './MaskResults.css'
 import ImgAnnotation from './ImgAnnotation'

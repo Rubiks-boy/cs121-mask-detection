@@ -8,17 +8,57 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
+import { withStyles } from '@material-ui/core'
+
+const getCheckboxColor = (theme, i) => {
+    const colors = [theme.palette.error, theme.palette.warning, theme.palette.success]
+    return colors[i].main
+}
+
+const MaskTableRow = (row, index) => {
+    const CurrCellCheckbox = withStyles(
+        (theme) => ({
+            root: {
+                color: getCheckboxColor(theme, index),
+            },
+        }),
+        { withTheme: true }
+    )((props) => (
+        <Checkbox
+            checked={row.checked}
+            disabled={row.num === 0}
+            indeterminate={row.num === 0}
+            onChange={row.onCheckEvent}
+            color="default"
+            // eslint-disable-next-line react/jsx-props-no-spreading
+            {...props}
+        />
+    ))
+
+    return (
+        <TableRow key={row.name}>
+            <TableCell padding="checkbox">
+                <CurrCellCheckbox />
+            </TableCell>
+            <TableCell component="th" scope="row">
+                {row.name}
+            </TableCell>
+            <TableCell align="right">{row.num}</TableCell>
+        </TableRow>
+    )
+}
 
 export default function MaskTable({ boxes, showCat, onCheckEvent }) {
-    // const numNoMasks = boxes.filter((x) => x.result === 0).length
-    // const numIncorrectMasks = boxes.filter((x) => x.result === 1).length
-    // const numGoodMasks = boxes.filter((x) => x.result === 2).length
-
     const names = ['No Mask', 'Incorrect Mask', 'Mask']
     const nums = [0, 1, 2].map((i) => boxes.filter((x) => x.result === i).length)
 
     const rows = [0, 1, 2].map((i) => {
-        return { name: names[i], num: nums[i], checked: showCat[i], onCheckEvent: onCheckEvent[i] }
+        return {
+            name: names[i],
+            num: nums[i],
+            checked: showCat[i],
+            onCheckEvent: onCheckEvent[i],
+        }
     })
 
     return (
@@ -32,19 +72,7 @@ export default function MaskTable({ boxes, showCat, onCheckEvent }) {
                             <TableCell align="right">Number of Faces</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
-                        {rows.map((row) => (
-                            <TableRow key={row.name}>
-                                <TableCell padding="checkbox">
-                                    <Checkbox checked={row.checked} onChange={row.onCheckEvent} />
-                                </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.num}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
+                    <TableBody>{rows.map(MaskTableRow)}</TableBody>
                 </Table>
             </TableContainer>
         </Container>

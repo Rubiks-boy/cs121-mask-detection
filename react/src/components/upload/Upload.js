@@ -68,11 +68,9 @@ export default function Upload(props) {
         [isDragActive, isDragReject, isDragAccept]
     )
 
-    console.log(style)
-
     return (
         <section className="upload">
-            <div {...getRootProps({ className: 'dropzone' })} className={classes.dropzone}>
+            <div {...getRootProps({ style })} className={classes.dropzone}>
                 <input {...getInputProps()} onChange={handleChange} />
                 <p>Drag and drop picture here</p>
             </div>

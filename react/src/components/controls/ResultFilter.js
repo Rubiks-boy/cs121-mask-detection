@@ -1,6 +1,8 @@
 import React from 'react'
 import { nanoid } from 'nanoid'
-import { Checkbox, FormControlLabel, FormGroup } from '@material-ui/core'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormGroup from '@material-ui/core/FormGroup'
 import './Controls.css'
 
 export default function ResultFilter(props) {

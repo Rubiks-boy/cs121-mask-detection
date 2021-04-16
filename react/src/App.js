@@ -19,7 +19,11 @@ function App() {
         [prefersDarkMode]
     )
 
-    const paperStyle = { height: '100vh', backgroundColor: theme.palette.background.default }
+    const paperStyle = {
+        minHeight: '100vh',
+        height: '100%',
+        backgroundColor: theme.palette.background.default,
+    }
 
     return (
         <div className="App">

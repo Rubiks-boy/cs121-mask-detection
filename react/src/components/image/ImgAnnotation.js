@@ -1,6 +1,6 @@
 import React from 'react'
 import './ImgAnnotation.css'
-import { Box } from '@material-ui/core'
+import Box from '@material-ui/core/Box'
 
 const CSS_BLOCK = 'face-box'
 const MASK_POSITION = {

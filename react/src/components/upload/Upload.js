@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import Alert from 'react-bootstrap/Alert'
 import { useDropzone } from 'react-dropzone'
 import { makeStyles } from '@material-ui/core'
+import { useTheme } from '@material-ui/core/styles'
 import handleUpload from './UploadImage'
 
 const useStyles = makeStyles((theme) => ({
@@ -17,16 +18,6 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
     },
 }))
-
-const activeStyle = {
-    borderColor: '#2196f3',
-}
-const acceptStyle = {
-    borderColor: '#00e676',
-}
-const rejectStyle = {
-    borderColor: '#ff1744',
-}
 
 function FileWarning({ badUpload, setBadUpload }) {
     function dismissWarning() {
@@ -44,6 +35,17 @@ function FileWarning({ badUpload, setBadUpload }) {
 
 export default function Upload(props) {
     const classes = useStyles()
+    const theme = useTheme()
+
+    const activeStyle = {
+        borderColor: theme.palette.info.main,
+    }
+    const acceptStyle = {
+        borderColor: theme.palette.success.main,
+    }
+    const rejectStyle = {
+        borderColor: theme.palette.error.main,
+    }
 
     const [badUpload, setBadUpload] = useState(false)
     const uploadImage = handleUpload(props.updateImage, props.updateMasks, props.setLoading)
@@ -59,14 +61,11 @@ export default function Upload(props) {
         multiple: false,
     })
 
-    const style = useMemo(
-        () => ({
-            ...(isDragActive ? activeStyle : {}),
-            ...(isDragAccept ? acceptStyle : {}),
-            ...(isDragReject ? rejectStyle : {}),
-        }),
-        [isDragActive, isDragReject, isDragAccept]
-    )
+    const style = {
+        ...(isDragActive ? activeStyle : {}),
+        ...(isDragAccept ? acceptStyle : {}),
+        ...(isDragReject ? rejectStyle : {}),
+    }
 
     return (
         <section className="upload">

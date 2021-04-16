@@ -4,7 +4,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery'
 import Paper from '@material-ui/core/Paper'
 import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import MaskApp from './components/MaskApp'
-import Header from './components/Header'
+import Header from './components/header/Header'
 
 function App() {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -19,10 +19,12 @@ function App() {
         [prefersDarkMode]
     )
 
+    const paperStyle = { height: '100vh', backgroundColor: theme.palette.background.default }
+
     return (
         <div className="App">
             <ThemeProvider theme={theme}>
-                <Paper style={{ height: '100vh' }}>
+                <Paper style={paperStyle}>
                     <Header />
                     <MaskApp />
                 </Paper>

@@ -1,10 +1,10 @@
 import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
-import Button from '@material-ui/core/Button'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core'
-import GitHubIcon from '@material-ui/icons/GitHub'
+import FaqModal from './FaqModal'
+import GitButton from './GitButton'
 
 const useStyles = makeStyles((theme) => ({
     '@global': {
@@ -25,32 +25,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         textAlign: 'left',
     },
-    gitButton: {
-        marginRight: theme.spacing(1),
-        textTransform: 'none',
-    },
 }))
-
-function GitButton() {
-    const classes = useStyles()
-    return (
-        <Button
-            variant="contained"
-            color="primary"
-            className={classes.gitButton}
-            startIcon={<GitHubIcon />}
-            onClick={() =>
-                window.open(
-                    'https://github.com/Rubiks-boy/cs121-mask-detection',
-                    '_blank',
-                    'noopener, noreferrer'
-                )
-            }
-        >
-            GitHub
-        </Button>
-    )
-}
 
 export default function Header() {
     const classes = useStyles()
@@ -61,6 +36,7 @@ export default function Header() {
                 <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
                     Fask Mask Detector
                 </Typography>
+                <FaqModal />
                 <GitButton />
             </Toolbar>
         </AppBar>

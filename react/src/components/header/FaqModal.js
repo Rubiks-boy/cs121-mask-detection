@@ -89,7 +89,6 @@ export default function FaqDialog() {
                     >
                         {faqQuestions.map((q) => (
                             <>
-                                <br />
                                 <Typography variant="h5" className={classes.faqText}>
                                     {q.question}
                                 </Typography>
@@ -102,6 +101,7 @@ export default function FaqDialog() {
                                         {line}
                                     </Typography>
                                 ))}
+                                <br />
                             </>
                         ))}
                     </DialogContentText>

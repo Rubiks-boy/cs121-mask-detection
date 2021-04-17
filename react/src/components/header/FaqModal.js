@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
 import HelpIcon from '@material-ui/icons/Help'
 import Typography from '@material-ui/core/Typography'
 import { nanoid } from 'nanoid'
@@ -9,6 +10,7 @@ import DialogActions from '@material-ui/core/DialogActions'
 import DialogContent from '@material-ui/core/DialogContent'
 import DialogContentText from '@material-ui/core/DialogContentText'
 import DialogTitle from '@material-ui/core/DialogTitle'
+import Hidden from '@material-ui/core/Hidden'
 import faqQuestions from './faqQuestions'
 
 const useStyles = makeStyles((theme) => ({
@@ -54,15 +56,22 @@ export default function FaqDialog() {
 
     return (
         <div>
-            <Button
-                variant="contained"
-                color="primary"
-                className={classes.helpButton}
-                startIcon={<HelpIcon />}
-                onClick={handleOpen}
-            >
-                FAQ
-            </Button>
+            <Hidden xsDown>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.helpButton}
+                    startIcon={<HelpIcon />}
+                    onClick={handleOpen}
+                >
+                    FAQ
+                </Button>
+            </Hidden>
+            <Hidden smUp>
+                <IconButton aria-label="github link" component="span" onClick={handleOpen}>
+                    <HelpIcon />
+                </IconButton>
+            </Hidden>
             <Dialog
                 open={open}
                 onClose={handleClose}

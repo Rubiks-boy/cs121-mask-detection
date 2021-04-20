@@ -18,21 +18,30 @@ __pycache__/
 # Ignored by the build system
 /setup.cfg
 
-# Pipfile
+# Pipfile stuff
 Pipfile
 Pipfile.lock
 
+# Unnecessary . files
 .pylintrc
 .env
 .vscode
-Procfile
-README.md
-runtime.txt
-requirements-dev.txt
 
+# Not used folders
+backend_demo
 OpenCV_Demos
 react
 
+# Not used files
+About.md
+Procfile
+readme-mvp-demo.gif
+README.md
+requirements-dev.txt
+old_requirements.txt
+runtime.txt
 run.py
 
 face_mask_classifier.zip
+
+old_cloudbuild.yaml

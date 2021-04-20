@@ -10,7 +10,7 @@ manual_scaling:
 resources:
   cpu: 1
   memory_gb: 1
-  disk_size_gb: 10
+  disk_size_gb: 15
 
 handlers:
   # This configures Google App Engine to serve the files in the app's static
@@ -21,7 +21,3 @@ handlers:
   # the entire handlers section) when there are no static files defined.
 - url: /.*
   script: auto
-
-- url: /(.*\.(gif|png|jpg|gif))$
-  static_files: upload/\1
-  upload: upload.*\.(gif|png|jpg|gif)$

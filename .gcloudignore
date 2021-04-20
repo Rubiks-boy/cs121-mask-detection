@@ -43,5 +43,3 @@ runtime.txt
 run.py
 
 face_mask_classifier.zip
-
-old_cloudbuild.yaml

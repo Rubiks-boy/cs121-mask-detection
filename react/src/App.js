@@ -1,27 +1,39 @@
-import React, { useState } from 'react'
-// import mask from './mask-clipart.png';
-// import data from './data.json';
-// import Box from './components/Box'
-// import MaskResults from './components/MaskResults';
-import Viewer from './components/Viewer'
-// import UploadImage from './upload/UploadImage';
-// import ImageUpload from './upload/ImagePreview';
+import React from 'react'
 import './App.css'
-import Upload from './upload-two/Upload'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import Paper from '@material-ui/core/Paper'
+import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import MaskApp from './components/MaskApp'
+import Header from './components/header/Header'
 
 function App() {
-    const [image, updateImage] = useState(null)
-    const [masks, updateMasks] = useState([])
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
+
+    const theme = React.useMemo(
+        () =>
+            createMuiTheme({
+                palette: {
+                    type: prefersDarkMode ? 'dark' : 'light',
+                },
+            }),
+        [prefersDarkMode]
+    )
+
+    const paperStyle = {
+        minHeight: '100vh',
+        height: '100%',
+        backgroundColor: theme.palette.background.default,
+    }
 
     return (
-        // <MaskResjults image={mask} boxes={data} />
-        // <Viewer image={mask} boxes={data} />
-        // <UploadImage />
-        // <ImageUpload />
-        <>
-            <Upload updateImage={updateImage} updateMasks={updateMasks} />
-            <Viewer image={image} boxes={masks} />
-        </>
+        <div className="App">
+            <ThemeProvider theme={theme}>
+                <Paper style={paperStyle}>
+                    <Header />
+                    <MaskApp />
+                </Paper>
+            </ThemeProvider>
+        </div>
     )
 }
 

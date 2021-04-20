@@ -1,13 +1,14 @@
-from ..defines import *
+from ..defines import NO_MASK, MASK, INCORRECT, MODELS
 from fastai.learner import load_learner
 from os import path
 
 modelPath = path.join(MODELS, "face_mask_classifier.pkl")
+model = load_learner(modelPath, cpu=True)
+
 
 def make_prediction(image_path):
     """ Given a path to a cropped face, 
-    return a prediction about that face."""
-    model = load_learner(modelPath, cpu=True)
+        return a prediction about that face."""
     prediction = model.predict(image_path)
     mask_class = prediction[0]
 

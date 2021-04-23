@@ -7,7 +7,9 @@ import sys
 # Link explaining blueprints / file layout
 # https://exploreflask.com/en/latest/blueprints.html
 
-app = Flask(__name__)  # TODO: Load config file...
+app = Flask(__name__)
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 10 # 10 MB cap
+app.config['UPLOAD_EXTENSIONS'] = ['.jpg', '.JPG', '.png', '.gif']
 CORS(app)
 
 # Load the blueprint views

@@ -1,4 +1,4 @@
-from flask import request, Response, Blueprint
+from flask import request, Response, Blueprint, abort
 import os
 # Import our models
 from ..models.detection_model import full_detect_flow

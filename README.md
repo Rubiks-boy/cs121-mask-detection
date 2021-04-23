@@ -11,7 +11,7 @@ Our algorithm categories each person in an image into one of two categories: wea
 
 Upon visiting our [web application](https://cs121-mask-detection.netlify.app/), users simply choose a file to upload or drag and drop an image into the indicated area. After our application processes the image (usually, 1-2 seconds), the web app will display the image with boxes around each face that was detected. Each box will be green or red, corresponding to wearing a mask correctly or not wearing a mask, respectively. In addition, we display statistics about how many detected faces fell into each category in tabular form, which is useful for larger images.
 
-<img src="./v1-demo-2.gif" width="200px">
+<img src="./v1-demo-2.gif" width="250px">
 
 Our web application supports a variety of screen sizes and devices, including mobile.
 

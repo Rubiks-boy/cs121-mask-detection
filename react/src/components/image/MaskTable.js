@@ -75,6 +75,9 @@ export default function MaskTable({ boxes, showCat, onCheckEvent, loading, image
         }
     })
 
+    const tableRows = rows.map(MaskTableRow)
+    tableRows.splice(1, 1)
+
     return (
         <Container component="mask-detector-results">
             <Box mb={1}>
@@ -93,7 +96,7 @@ export default function MaskTable({ boxes, showCat, onCheckEvent, loading, image
                             <TableCell align="right">Number of Faces</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>{rows.map(MaskTableRow)}</TableBody>
+                    <TableBody>{tableRows}</TableBody>
                 </Table>
             </TableContainer>
         </Container>

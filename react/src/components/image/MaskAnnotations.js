@@ -19,7 +19,7 @@ export default function MaskAnnotations({ boxes, image, catsDisplayed, loading }
                 ))}
                 <img src={image} className="mask-detector-results__img" alt="Face mask results" />
                 {/* Show loading bar while loading */}
-                {loading && <LinearProgress color="secondary" />}
+                {loading && <LinearProgress color="primary" />}
             </Container>
         </Box>
     )

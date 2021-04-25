@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import { makeStyles } from '@material-ui/core'
 import MaskResults from './image/MaskResults'
 import Upload from './upload/Upload'
+import placeholderImg from '../placeholder/demo.png'
+import placeholderJSON from '../placeholder/response.json'
 
 const useStyles = makeStyles((theme) => ({
     body: {
@@ -19,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
 export default function MaskApp() {
     const classes = useStyles()
 
-    const [image, updateImage] = useState(null)
-    const [masks, updateMasks] = useState([])
+    const [image, updateImage] = useState(placeholderImg)
+    const [masks, updateMasks] = useState(placeholderJSON)
     const [loading, setLoading] = useState(false)
 
     return (

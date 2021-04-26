@@ -9,10 +9,6 @@ import placeholderImg from '../placeholder/demo.png'
 import placeholderJSON from '../placeholder/response.json'
 
 const useStyles = makeStyles((theme) => ({
-    body: {
-        // backgroundColor: theme.palette.background.default,
-        // height: '100%',
-    },
     content: {
         padding: theme.spacing(4),
     },
@@ -26,7 +22,7 @@ export default function MaskApp() {
     const [loading, setLoading] = useState(false)
 
     return (
-        <Box style={{ maxHeight: '100%', overflow: 'auto' }} className={classes.body}>
+        <Box style={{ maxHeight: '100%', overflow: 'auto' }}>
             <Container component="main" maxWidth="lg" className={classes.content}>
                 <Grid container direction="row" justify="center" alignItems="center" spacing={3}>
                     <Grid item xs={12}>

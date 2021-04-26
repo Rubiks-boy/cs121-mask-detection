@@ -1,19 +1,42 @@
 import React from 'react'
-import './ImgAnnotation.css'
 import Box from '@material-ui/core/Box'
+import { makeStyles } from '@material-ui/core'
 
-const CSS_BLOCK = 'face-box'
-const MASK_POSITION = {
-    0: `${CSS_BLOCK}--none`,
-    1: `${CSS_BLOCK}--incorrect`,
-    2: `${CSS_BLOCK}--correct`,
+const useStyles = makeStyles(() => ({
+    faceBox: {
+        outline: '5px solid',
+        boxShadow: '0 0 10px black',
+        '&:hover': {
+            outlineWidth: '8px',
+        },
+    },
+    faceBoxCorrect: {
+        outlineColor: 'lime',
+    },
+    faceBoxIncorrect: {
+        outlineColor: 'yellow',
+    },
+    faceBoxNone: {
+        outlineColor: 'red',
+    },
+}))
+
+const classificationColor = (result, classes) => {
+    const colors = {
+        0: classes.faceBoxNone,
+        1: classes.faceBoxIncorrect,
+        2: classes.faceBoxCorrect,
+    }
+    return colors[result]
 }
 
 export default function ImgAnnotation(props) {
+    const classes = useStyles()
+
     return (
         <Box
             position="absolute"
-            className={[CSS_BLOCK, MASK_POSITION[props.result]].join(' ')}
+            className={[classes.faceBox, classificationColor(props.result, classes)]}
             top={`${props.top}%`}
             height={`${props.bottom - props.top}%`}
             left={`${props.left}%`}

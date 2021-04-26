@@ -37,6 +37,9 @@ We would like to thank Professor Z Sweedyk and our grutor Carson Herness for the
 
 ### Contributors
 [Xander Hirsch](https://github.com/amhirsch)
+
 [Dylan McGarvey](https://github.com/McGarvs)
+
 [Nick Tan](https://github.com/ntan9)
+
 [Adam Walker](https://github.com/Rubiks-boy)

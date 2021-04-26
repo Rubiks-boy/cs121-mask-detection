@@ -3,7 +3,7 @@ import os
 # Import our models
 from ..models.detection_model import full_detect_flow
 from ..models.classification_model import make_prediction
-from ..defines import BASE_DIR, box_resp
+from ..defines import UPLOAD, box_resp
 # Imports for debugging ( print('', file=sys.stderr) )
 import sys
 
@@ -15,7 +15,7 @@ def cropped_face():
         and returns a response with face coords"""
     # Get and Save the uploaded image
     image = dict(request.files.lists())['file'][0]
-    image_path = os.path.join(BASE_DIR, 'upload', 'my_upload.png')
+    image_path = os.path.join(UPLOAD, 'my_upload.png')
     image.save(image_path)
     # Call the Face Detection Model
     (coords, face_paths) = full_detect_flow(image_path, save=True)

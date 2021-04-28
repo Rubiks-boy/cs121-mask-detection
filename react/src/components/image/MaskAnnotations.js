@@ -7,7 +7,9 @@ import { nanoid } from 'nanoid'
 import ImgAnnotation from './ImgAnnotation'
 
 const useStyles = makeStyles(() => ({
-    imgContainer: {},
+    imgContainer: {
+        display: 'initial',
+    },
     img: {
         width: '100%',
     },
@@ -20,7 +22,7 @@ export default function MaskAnnotations({ boxes, image, catsDisplayed, loading }
 
     return (
         <Box position="relative">
-            <Container component={classes.imgContainer} maxWidth="sm">
+            <Container className={classes.imgContainer} disableGutters maxWidth="sm">
                 {boxesToDisplay.map((x) => (
                     // eslint-disable-next-line react/jsx-props-no-spreading
                     <ImgAnnotation key={x + nanoid()} {...x} />

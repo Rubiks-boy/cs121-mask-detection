@@ -31,6 +31,7 @@ We trained a ResNet-34 CNN on [this Kaggle data set](https://www.kaggle.com/andr
 ### Known Bugs
 - Very large images, or images with a large number of faces (i.e. several dozen) can result in timeouts.
 - We hoped to implement nose detection, which would support recognizing faces with masks worn incorrectly. Unfortunately, we weren't able to implement this reliably prior to our V1 release.
+- On certain screen sizes that are much wider than they are tall, portrait images may be taller than the web page's window. This results in the user having to scroll to see the entire image.
 
 ### Acknowledgements
 We would like to thank Professor Z Sweedyk and our grutor Carson Herness for their support throughout the development process.

@@ -19,7 +19,7 @@ export default [
         question: '3) What are the acceptable file types?',
         answer: [
             `Our app accepts the following common file types: `,
-            `.png .jpg .jpe .jpeg .gif .svg`,
+            `.jpe .jpg .JPG .png .gif .svg`,
         ],
     },
     {

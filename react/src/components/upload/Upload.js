@@ -71,7 +71,7 @@ export default function Upload(props) {
         <section className="upload">
             <div {...getRootProps({ style })} className={classes.dropzone}>
                 <input {...getInputProps()} onChange={handleChange} />
-                <p>Drag and drop picture here</p>
+                <p>Click to upload or drag and drop picture</p>
             </div>
             <FileWarning badUpload={badUpload} setBadUpload={setBadUpload} />
         </section>

@@ -1,5 +1,7 @@
 import os
 import json
+import glob
+
 # Windows specific Imports
 from platform import system
 if system() == 'Windows':
@@ -16,40 +18,6 @@ NO_MASK = 0
 INCORRECT = 1
 MASK = 2
 
-DEFAULT_RESPONSE = json.dumps([
-    {
-        'result': NO_MASK,
-        'top': '16',
-        'bottom': '40',
-        'left': '18',
-        'right': '31',
-    },
-    {
-        'result': MASK,
-        'top': '50',
-        'bottom': '77',
-        'left': '45',
-        'right': '57',
-    },
-    {
-        'result': INCORRECT,
-        'top': '16',
-        'bottom': '37',
-        'left': '68',
-        'right': '78',
-    },
-])
-
-
-def cropped_resp(code):
-    return json.dumps([{
-            'top': '0',
-            'bottom': '100',
-            'left': '0',
-            'right': '100',
-            'result': code,
-    }])
-
 def box_resp(mylist):
     json_resp = []
     for i in range(len(mylist)):
@@ -64,6 +32,12 @@ def box_resp(mylist):
         })
     return json.dumps(json_resp)
 
-RESP_GOOD_MASK, RESP_INCORRECT_MASK, RESP_NO_MASK = [
-    cropped_resp(x) for x in (2, 1, 0)
-]
+def delete_uploads():
+    """Deletes all files in UPLOAD folder """
+    files = glob.glob(os.path.join(UPLOAD, '*.png'), recursive=True)
+    for f in files:
+        try:
+            os.remove(f)
+        except OSError as e:
+            print("Error: %s : %s" % (f, e.strerror))
+    return "All Good!"

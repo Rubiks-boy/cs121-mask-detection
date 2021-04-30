@@ -14,13 +14,10 @@ function uploadImage(formData, updateMasks, setLoading) {
         .post(`${maskAPI}/${endpoint || 'detect'}`, formData)
         .then((res) => {
             // then print response status
-            console.log('Uploaded from Axios')
-            console.log(res.data)
             updateMasks(res.data)
             setLoading(false)
         })
         .catch((err) => {
-            console.log('rip')
             console.log(err)
             setLoading(false)
         })

@@ -1,4 +1,5 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/styles'
 import Container from '@material-ui/core/Container'
 import Table from '@material-ui/core/Table'
 import TableBody from '@material-ui/core/TableBody'
@@ -8,7 +9,15 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import Checkbox from '@material-ui/core/Checkbox'
+import Box from '@material-ui/core/Box'
+import Alert from '@material-ui/lab/Alert'
 import { withStyles } from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+    alert: {
+        spacing: theme.spacing(8),
+    },
+}))
 
 const getCheckboxColor = (theme, i) => {
     const colors = [theme.palette.error, theme.palette.warning, theme.palette.success]
@@ -48,9 +57,14 @@ const MaskTableRow = (row, index) => {
     )
 }
 
-export default function MaskTable({ boxes, showCat, onCheckEvent }) {
+export default function MaskTable({ boxes, showCat, onCheckEvent, loading, image }) {
+    const classes = useStyles()
+
     const names = ['No Mask', 'Incorrect Mask', 'Mask']
     const nums = [0, 1, 2].map((i) => boxes.filter((x) => x.result === i).length)
+
+    const zero = nums.reduce((a, b) => a + b, 0) === 0
+    const noFaceAlert = !image && !loading && zero
 
     const rows = [0, 1, 2].map((i) => {
         return {
@@ -61,8 +75,18 @@ export default function MaskTable({ boxes, showCat, onCheckEvent }) {
         }
     })
 
+    const tableRows = rows.map(MaskTableRow)
+    tableRows.splice(1, 1)
+
     return (
         <Container component="mask-detector-results">
+            <Box mb={1}>
+                {noFaceAlert && (
+                    <Alert severity="info" className={classes.alert}>
+                        No Faces Detected
+                    </Alert>
+                )}
+            </Box>
             <TableContainer component={Paper}>
                 <Table aria-label="simple table">
                     <TableHead>
@@ -72,7 +96,7 @@ export default function MaskTable({ boxes, showCat, onCheckEvent }) {
                             <TableCell align="right">Number of Faces</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>{rows.map(MaskTableRow)}</TableBody>
+                    <TableBody>{tableRows}</TableBody>
                 </Table>
             </TableContainer>
         </Container>

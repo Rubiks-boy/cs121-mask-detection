@@ -29,7 +29,13 @@ export default function MaskResults({ boxes, image, loading }) {
             </Grid>
             <Grid container item direction="column" xs={12} sm={8} md={5} lg={4}>
                 <Grid item xs={12}>
-                    <MaskTable boxes={boxes} showCat={catsDisplayed} onCheckEvent={onCheckEvent} />
+                    <MaskTable
+                        boxes={boxes}
+                        showCat={catsDisplayed}
+                        onCheckEvent={onCheckEvent}
+                        loading={loading}
+                        image={image === null}
+                    />
                 </Grid>
             </Grid>
         </Grid>

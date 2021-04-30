@@ -29,9 +29,10 @@ Our face detection within OpenCV uses [this model](https://github.com/chandrikad
 We trained a ResNet-34 CNN on [this Kaggle data set](https://www.kaggle.com/andrewmvd/face-mask-detection), providing us with a [model](https://github.com/Rubiks-boy/cs121-mask-detection/blob/main/app/static/face_mask_classifier.zip) used for face classification.
 
 ### Known Bugs
-- Very large images, or images with a large number of faces (i.e. several dozen) can result in timeouts.
+- Very large images, or images with a large number of faces (i.e. hundreds) can result in timeouts. This results in a "No faces detected" error shown to the user.
 - We hoped to implement nose detection, which would support recognizing faces with masks worn incorrectly. Unfortunately, we weren't able to implement this reliably prior to our V1 release.
 - On certain screen sizes that are much wider than they are tall, portrait images may be taller than the web page's window. This results in the user having to scroll to see the entire image.
+- High-resolution images with very few faces sometimes return errorneous results. This is due to our face detection algorithm looking for faces within smaller parts of the image (ex. on the scale of someone's eye, as opposed to someone's face). We chose to allow for these erroneous results in order to prioritize face detection for high-resolution images with crowds of people.
 
 ### Acknowledgements
 We would like to thank Professor Z Sweedyk and our grutor Carson Herness for their support throughout the development process.

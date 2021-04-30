@@ -1,5 +1,6 @@
 import os
 import json
+import glob
 
 # Windows specific Imports
 from platform import system
@@ -31,3 +32,12 @@ def box_resp(mylist):
         })
     return json.dumps(json_resp)
 
+def delete_uploads():
+    """Deletes all files in UPLOAD folder """
+    files = glob.glob(os.path.join(UPLOAD, '*.png'), recursive=True)
+    for f in files:
+        try:
+            os.remove(f)
+        except OSError as e:
+            print("Error: %s : %s" % (f, e.strerror))
+    return "All Good!"

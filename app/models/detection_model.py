@@ -1,5 +1,3 @@
-# tutorial: https://www.returnscript.com/realtime-face-mask-detection/
-# models: https://github.com/chandrikadeb7/Face-Mask-Detection/tree/master/face_detector
 import cv2
 import numpy as np
 from os import path

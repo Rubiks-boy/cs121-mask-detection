@@ -3,7 +3,7 @@ import os
 # Import our models
 from ..models.detection_model import full_detect_flow
 from ..models.classification_model import make_prediction
-from ..defines import BASE_DIR, box_resp
+from ..defines import BASE_DIR, box_resp, delete_uploads
 
 image_detection = Blueprint('image_detection', __name__)
 
@@ -31,4 +31,7 @@ def cropped_face():
         coord = coords[i]
         prediction = predictions[i]
         faces_and_coords.append((coord, prediction))
+
+    # Delete any stored images
+    delete_uploads()
     return Response(box_resp(faces_and_coords))

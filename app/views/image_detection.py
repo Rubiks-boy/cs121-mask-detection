@@ -17,7 +17,7 @@ def cropped_face():
         # Save file if not empty & correct extension
         file_ext = os.path.splitext(image.filename)[1]
         if file_ext not in current_app.config['UPLOAD_EXTENSIONS']:
-            return "Invalid File Type", 400
+            return Response("Invalid File Type", status=400)
         else:
             image_path = os.path.join(BASE_DIR, 'upload', 'my_upload.png')
             image.save(image_path)

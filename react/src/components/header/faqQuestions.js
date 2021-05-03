@@ -19,15 +19,15 @@ export default [
         question: '3) What are the acceptable file types?',
         answer: [
             `Our app accepts the following common file types: `,
-            `.jpe .jpg .JPG .png .gif .svg`,
+            `.jpeg .jpg .JPG .png .gif`,
         ],
     },
     {
-        question: `4) I am getting a 500 error, what's going on?`,
+        question: `4) I am getting a no faces detected, what's going on?`,
         answer: [
             'There are several possible reasons for why this may be occuring, here are some common ones:',
             '- Your image was too large.',
-            '- Your image contained more than 10 faces.',
+            '- Your image contained too many faces.',
             `- Your image upload had a wrong file type.`,
         ],
     },
@@ -35,11 +35,9 @@ export default [
         question: '5) Why does it take so long to load?',
         answer: [
             `You probably picked a large image, or one with many faces. 
-            Our app works best on images with up to 4 faces, 
-            otherwise you'll get a longer loading time. 
-            Our app will work for an image with up to 10 faces, 
-            but know that as your image gets closer to 10 faces, 
-            the loading time may significantly increase.`,
+            Our app works best on images with a smaller number of faces. 
+            Our app was successfully tested on an image with 40 faces, 
+            but anymore than 10 will likely cause a longer loading time.`,
         ],
     },
     {

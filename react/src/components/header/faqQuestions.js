@@ -1,13 +1,13 @@
 export default [
     {
-        question: "1) Who are the creators?",
+        question: '1) Who are the creators?',
         answer: [
             `This web app was made by Xander Hirst, Dylan McGarvey, Nick Tan, and Adam Walker 
             for their CS121 Software Development course at Harvey Mudd College.`,
         ],
     },
     {
-        question: "2) What does it mean to wear a mask correctly or incorrectly?",
+        question: '2) What does it mean to wear a mask correctly or incorrectly?',
         answer: [
             `While many people interpret face shields and bandanas as proper mask usage, 
             our model was trained on data that largely consisted of faces with and without 
@@ -39,15 +39,12 @@ export default [
             otherwise you'll get a longer loading time. 
             Our app will work for an image with up to 10 faces, 
             but know that as your image gets closer to 10 faces, 
-            the loading time may significantly increase.`
+            the loading time may significantly increase.`,
         ],
     },
     {
         question: '6) What do the colors mean?',
-        answer: [
-            `- Red: The no mask category`,
-            `- Green: The correctly worn mask category`,
-        ],
+        answer: [`- Red: The no mask category`, `- Green: The correctly worn mask category`],
     },
     {
         question: '7) What do the little check boxes do?',

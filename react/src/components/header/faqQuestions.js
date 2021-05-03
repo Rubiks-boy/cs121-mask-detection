@@ -17,10 +17,7 @@ export default [
     },
     {
         question: '3) What are the acceptable file types?',
-        answer: [
-            `Our app accepts the following common file types: `,
-            `.jpeg .jpg .JPG .png .gif`,
-        ],
+        answer: [`Our app accepts the following common file types: `, `.jpeg .jpg .JPG .png .gif`],
     },
     {
         question: `4) I am getting a no faces detected, what's going on?`,
